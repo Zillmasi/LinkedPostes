@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+@custom-variant dark (&:where(.dark, .dark *));
+
+.main-btn{
+    background-color: #3b82f6;
+    color: white;
+    padding-inline: 1.5rem;
+    padding-block: 0.5rem ;
+    border-radius: 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.main-btn:hover{
+    background-color: #2d64bd;
+
+}

@@ -1,0 +1,271 @@
+@let NameControl = registerForm.get("name"); @let EmailControl =
+registerForm.get("email"); @let passControl = registerForm.get("password"); @let
+RePassControl =registerForm.get("rePassword"); @let DateControl =
+registerForm.get("dateOfBirth");
+@let genderControl = registerForm.get('gender');
+
+<!-- /////////////////////////////////////////////////////////////////////////////////// -->
+<section class="mt-24 mb-6 mx-4 p-6 bg-white dark:bg-[#151c2a] rounded-2xl shadow">
+  <h1 class="text-3xl font-bold text-blue-500">Register now</h1>
+  <form class="mb-6 mt-8" [formGroup]="registerForm" (submit)="PostData()">
+    <!-- /////////////////////////////////////////////////Name///////////////////////////////// -->
+    <div class="relative mb-6">
+      <div
+        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+      >
+        <i class="fa-solid fa-user text-[#6B7280]"></i>
+      </div>
+      <input
+        formControlName="name"
+        type="text"
+        id="name-input"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Enter Your Name..."
+      />
+    </div>
+    @if(NameControl?.errors && NameControl?.touched){
+    <div
+      class="flex items-center p-4 mb-4 mt-[-20px] text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+      role="alert"
+    >
+      <svg
+        class="shrink-0 inline w-4 h-4 me-3"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+        />
+      </svg>
+      <span class="sr-only">Info</span>
+      @if(NameControl?.getError("required")){
+      <div>Name is Required</div>
+      } @else if(NameControl?.getError("minlength")){
+      <div>Name Should be more than or equal 3 chars</div>
+      } @else if(NameControl?.getError("maxlength")){
+      <div>Name Should be less than or equal 20 chars</div>
+      }
+    </div>
+    }
+
+    <!-- /////////////////////////////////////////////////Email///////////////////////////////// -->
+
+    <div class="relative mb-6">
+      <div
+        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+      >
+        <svg
+          class="w-4 h-4 text-gray-500 dark:text-gray-400"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 20 16"
+        >
+          <path
+            d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"
+          />
+          <path
+            d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"
+          />
+        </svg>
+      </div>
+      <input
+        formControlName="email"
+        type="email"
+        id="email-input"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Enter Your Email..."
+      />
+    </div>
+
+    @if(EmailControl?.errors && EmailControl?.touched){
+    <div
+      class="flex items-center p-4 mb-4 mt-[-20px] text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+      role="alert"
+    >
+      <svg
+        class="shrink-0 inline w-4 h-4 me-3"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+        />
+      </svg>
+      <span class="sr-only">Info</span>
+      @if(EmailControl?.getError('required')){
+      <div>Email is Required</div>
+      } @else if(EmailControl?.getError('email')){
+      <div>Enter Valid Email</div>
+      }
+    </div>
+    }
+
+    <!-- /////////////////////////////////////////////////Password///////////////////////////////// -->
+
+    <div class="relative mb-6">
+      <div
+        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+      >
+        <i class="fa-solid fa-key text-[#6B7280]"></i>
+      </div>
+      <input
+        formControlName="password"
+        type="password"
+        id="pass-input"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Enter Your Password..."
+      />
+    </div>
+    @if(passControl?.errors && passControl?.touched){
+    <div
+      class="flex items-center p-4 mb-4 mt-[-20px] text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+      role="alert"
+    >
+      <svg
+        class="shrink-0 inline w-4 h-4 me-3"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+        />
+      </svg>
+      <span class="sr-only">Info</span>
+      @if(passControl?.getError("required")){
+      <div>Password is Required</div>
+      } @else if(passControl?.getError("pattern")){
+      <div>password Should be Valid</div>
+      }
+    </div>
+    }
+
+    <!-- /////////////////////////////////////////////////RePassword///////////////////////////////// -->
+
+    <div class="relative mb-6">
+      <div
+        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+      >
+        <i class="fa-solid fa-key text-[#6B7280]"></i>
+      </div>
+      <input
+        formControlName="rePassword"
+        type="password"
+        id="RePass-input"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Confirm Your Password..."
+      />
+    </div>
+    @if(registerForm.getError("mismatch") || RePassControl?.errors &&
+    RePassControl?.touched){
+    <div
+      class="flex items-center p-4 mb-4 mt-[-20px] text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+      role="alert"
+    >
+      <svg
+        class="shrink-0 inline w-4 h-4 me-3"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+        />
+      </svg>
+      <span class="sr-only">Info</span>
+      <div>Password confirmation is incorrect</div>
+    </div>
+    }
+
+    <!-- /////////////////////////////////////////////////Date///////////////////////////////// -->
+
+    <div class="relative mb-6">
+      <div
+        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+      >
+        <i class="fa-solid fa-calendar-days text-[#6B7280]"></i>
+      </div>
+      <input
+        formControlName="dateOfBirth"
+        type="date"
+        id="date-input"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+    </div>
+    @if(DateControl?.errors && DateControl?.touched){
+    <div
+      class="flex items-center p-4 mb-4 mt-[-20px] text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+      role="alert"
+    >
+      <svg
+        class="shrink-0 inline w-4 h-4 me-3"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+        />
+      </svg>
+      <span class="sr-only">Info</span>
+      <div>Date is Required</div>
+    </div>
+
+    }
+    <!-- /////////////////////////////////////////////////Gender///////////////////////////////// -->
+
+    <div class="flex items-center gap-5">
+      <div class="flex items-center">
+        <input
+          formControlName="gender"
+          type="radio"
+          id="GendarM"
+          value="male"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+        <label for="GendarM" class="ms-1.5 dark:text-white">Male</label>
+      </div>
+      <div class="flex items-center">
+        <input
+          formControlName="gender"
+          type="radio"
+          id="GendarF"
+          value="female"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+        <label for="GendarF" class="ms-1.5 dark:text-white">Female</label>
+      </div>
+    </div>
+    @if(genderControl?.errors && genderControl?.touched){
+    <div
+      class="flex items-center p-4 mb-4 mt-[10px] text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+      role="alert"
+    >
+      <svg
+        class="shrink-0 inline w-4 h-4 me-3"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+        />
+      </svg>
+      <span class="sr-only">Info</span>
+      <div>Please Choose Your Gender</div>
+    </div>
+
+    }
+
+    <button type="submit" class="mt-8 main-btn">Register</button>
+  </form>
+</section>
